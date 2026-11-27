@@ -25,7 +25,8 @@ jobs:
       - name: Minify CSS
         run: |
           mkdir -p dist
-          npx clean-css-cli -o dist/style.css style.css
+          npx -y clean-css-cli -o dist/style.css style.css --format keep-breaks
+          cp index.html dist/
 
       - name: Copy HTML
         run: |
