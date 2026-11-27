@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,10 +29,11 @@ jobs:
 
       - name: Copy HTML
         run: |
-          cp index.html dist/ 
+          cp index.html dist/
 
       - name: Commit minified files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Auto-build: Minify CSS to dist"
           file_pattern: "dist/*"
+          branch: main
