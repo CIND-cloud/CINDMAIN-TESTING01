@@ -19,19 +19,15 @@ jobs:
       - name: Install clean-css-cli
         run: npm install -g clean-css-cli
 
-      # 自動壓縮 CSS 並輸出到 dist 資料夾
       - name: Minify CSS
         run: |
           mkdir -p dist
           npx clean-css-cli -o dist/style.css style.css
 
-      # 將 index.html 複製到 dist 資料夾 (如果你有 JS 都喺度加)
-      - name: Copy HTML and other assets
+      - name: Copy HTML
         run: |
           cp index.html dist/ 
-          # 如果你有其他圖片或 JS，可以加 cp *.js dist/ 等等
 
-      # 將產生嘅 dist 資料夾自動 Commit 返去 GitHub
       - name: Commit minified files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
